@@ -325,23 +325,24 @@ static bool do_save(const Buffer *buf, char *pathOut, int pathOutSz, bool *hasPa
     return do_save_as(buf, pathOut, pathOutSz, hasPath);
 }
 
-static const char* find_asset(const char *rel)
-{
+static const char* find_asset(const char *rel) {
     static char path[1024];
 
-    // 1) installed path
+    const char *appdir = getenv("APPDIR");
+    if (appdir && appdir[0]) {
+        snprintf(path, sizeof(path), "%s/usr/share/pen/assets/%s", appdir, rel);
+        if (FileExists(path)) return path;
+    }
+
     snprintf(path, sizeof(path), "/usr/share/pen/assets/%s", rel);
     if (FileExists(path)) return path;
 
-    // 2) local install path
     snprintf(path, sizeof(path), "/usr/local/share/pen/assets/%s", rel);
     if (FileExists(path)) return path;
 
-    // 3) run from repo root
     snprintf(path, sizeof(path), "assets/%s", rel);
     if (FileExists(path)) return path;
 
-    // 4) run from src/
     snprintf(path, sizeof(path), "../assets/%s", rel);
     if (FileExists(path)) return path;
 
