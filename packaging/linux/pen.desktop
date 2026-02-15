@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Name=Pen
+Comment=Plaintext Editing Notepad
+Exec=pen
+Icon=pen
+Terminal=false
+Categories=Utility;TextEditor;
+StartupWMClass=Pen
+

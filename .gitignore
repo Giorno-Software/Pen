@@ -1,0 +1,21 @@
+# build output
+build/
+dist/
+*.o
+*:Zone.Identifier
+pen
+
+# editor stuff
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+
+# clangd cache
+.cache/
+compile_commands.json
+
+# logs
+*.log
+
